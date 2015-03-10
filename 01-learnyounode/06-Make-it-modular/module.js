@@ -1,0 +1,18 @@
+(function() {
+  var fs, path;
+
+  fs = require('fs');
+
+  path = require('path');
+
+  module.exports = function(dir, ext, callback) {
+    return fs.readdir(dir, function(err, list) {
+      if (err) return callback(err);
+      list = list.filter(function(file) {
+        return path.extname(file) === ("." + ext);
+      });
+      return callback(null, list);
+    });
+  };
+
+}).call(this);
