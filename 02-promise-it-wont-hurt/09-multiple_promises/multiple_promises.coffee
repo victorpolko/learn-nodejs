@@ -1,7 +1,7 @@
 # Can you do what async do?
 
 # When doing asynchronous programming you will often want to
-# perform multiple operations in parallel.  In some cases
+# perform multiple operations in parallel. In some cases
 # you may wish to delay further processing until a list of
 # async operations have completed.
 
@@ -124,8 +124,8 @@ def1 = q.defer()
 def2 = q.defer()
 
 q.all([def1.promise, def2.promise])
-.spread(console.log)
-.done()
+  .spread(console.log)
+  .done()
 
 setTimeout ->
   def1.resolve "[ 'PROMISES',"

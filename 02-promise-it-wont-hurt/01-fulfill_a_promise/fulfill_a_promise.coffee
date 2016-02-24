@@ -11,7 +11,7 @@
 # with the "then" method will be called with the Error as argument.
 
 # For now, do not be concerned with exactly HOW this works or what the syntax is.
-# We are about to dive into that in detail
+# We are about to dive into that in detail.
 
 # Setup
 
@@ -50,7 +50,9 @@
 q = require 'q'
 defer = q.defer()
 
-defer.promise.then console.log
+defer.promise
+  .then console.log
+
 setTimeout defer.resolve, 300, 'RESOLVED!'
 
 

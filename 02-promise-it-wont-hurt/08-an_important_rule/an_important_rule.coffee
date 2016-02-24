@@ -6,7 +6,7 @@
 # hits the global context where it will be thrown.
 
 # In the code below, each expression is evaluated one after the
-# other.  If any expression throws an exception, ALL SUBSEQUENT
+# other. If any expression throws an exception, ALL SUBSEQUENT
 # EXPRESSIONS WILL NOT BE EXECUTED and the catch block
 # will catch and handle it.
 
@@ -25,9 +25,9 @@
 # .then(null, complainAboutJavascript);
 
 # Maybe we should combine the last two lines since one is a fulfill
-# handler and the other is a rejection handler?  NO!  While this
+# handler and the other is a rejection handler? NO! While this
 # might initially seem sensible consider what would happen if
-# doMoreStuff threw an error.  Since the promise returned from it
+# doMoreStuff threw an error. Since the promise returned from it
 # would be rejected, it would look for the NEXT rejection handler
 # to handle it.
 
@@ -37,15 +37,15 @@
 # at the bottom of your promise chain (much like a catch block).
 
 # It is worth pointing out that both the synchronous AND asynchronous
-# code have the same problem.  If the rejection handler itself throws
+# code have the same problem. If the rejection handler itself throws
 # an error you are going to have a bad time.
 
 # Many promise libraries try to ameliorate this problem for you
 # by providing a "done" handler that simple handles any uncaught
-# errors.  The rule of thumb is this:
+# errors. The rule of thumb is this:
 
 # If you are NOT returning a value from your promise to a caller,
-# then attach a "done" handler to gaurd against uncaught exceptions".
+# then attach a "done" handler to guard against uncaught exceptions.
 
 # An example is shown below:
 
@@ -71,14 +71,14 @@
 # 5. Insert a call to "throwMyGod" after your 5th call of "iterate"
 
 # If you have done this correctly, your code should print 1,2,3,4,5,
-# "[Error: OH NOES]".  It's important to notice that the thrown exception was
+# "[Error: OH NOES]". It's important to notice that the thrown exception was
 # turned into a rejected promise which caused the rejected promise to
 # travel down the promise chain to the first available rejection handler.
 
 # Bonus
 
 # Try swapping your rejection handler from console.log to throwMyGod.
-# Your program will now throw an exception in the global context!  Ahh!
+# Your program will now throw an exception in the global context! Ahh!
 # Try to fix this using the approach described above.
 
 q = require 'q'
@@ -87,17 +87,17 @@ throwMyGod = -> throw new Error 'OH NOES'
 iterate = (number) -> console.log number; ++number
 
 q.fcall(iterate, 1)
-.then(iterate)
-.then(iterate)
-.then(iterate)
-.then(iterate)
-.then(throwMyGod)
-.then(iterate)
-.then(iterate)
-.then(iterate)
-.then(iterate)
-.then(null, throwMyGod)
-.done null, console.log
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(throwMyGod)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(null, throwMyGod)
+  .done null, console.log
 
 
 # === Official Solution ===

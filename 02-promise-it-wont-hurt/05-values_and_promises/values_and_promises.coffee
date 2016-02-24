@@ -1,12 +1,12 @@
 # Do I HAVE to return promises??
 
-# NO!  Fulfillment handlers may return promises OR values.  Your
+# NO! Fulfillment handlers may return promises OR values. Your
 # Promises/A+ library will do the correct thing and wrap your
-# return value in a promise if need be.  This is awesome because
+# return value in a promise if need be. This is awesome because
 # it allows you to intermix values with promises in a chain.
 
 # Imagine that you have a a cache of models that may already contain
-# a model you would like to request from the server.  You could
+# a model you would like to request from the server. You could
 # check your cache synchronously and return the found value OR send
 # an ajax request to your remote server to fetch it.
 
@@ -49,8 +49,9 @@ defer = q.defer()
 
 attachTitle = (name) -> "DR. #{name}"
 
-defer.promise.then(attachTitle)
-.then console.log
+defer.promise
+  .then(attachTitle)
+  .then console.log
 
 defer.resolve 'MANHATTAN'
 

@@ -1,7 +1,7 @@
 # Are promises always resolved asynchronously?
 
 # The Promises/A+ spec declares that promises MUST fire their resolution/rejection
-# function on the same turn of the event loop that they are created on.  This is
+# function on the same turn of the event loop that they are created on. This is
 # very important because it eliminates the possibility of execution order
 # varying and resulting in indeterminate outcomes.
 
@@ -29,6 +29,7 @@ q = require 'q'
 defer = q.defer()
 
 defer.promise.then console.log
+
 defer.resolve 'SECOND'
 
 console.log 'FIRST'
